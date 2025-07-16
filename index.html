@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Malla Derecho UNT</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff0f6;
+      margin: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #800080;
+    }
+    .anio {
+      display: inline-block;
+      vertical-align: top;
+      margin: 10px;
+      background: #fce4ec;
+      border-radius: 10px;
+      padding: 10px;
+      width: 260px;
+      box-shadow: 0 0 5px #aaa;
+    }
+    .anio h2 {
+      text-align: center;
+      color: #6a1b9a;
+    }
+    .materia {
+      background: #f3e5f5;
+      margin: 5px 0;
+      padding: 8px;
+      border-radius: 5px;
+      transition: background 0.3s;
+      cursor: pointer;
+      opacity: 0.4;
+    }
+    .materia.aprobada {
+      background: #ce93d8;
+      opacity: 1;
+      font-weight: bold;
+    }
+    .materia.desbloqueada {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <h1>Malla Derecho UNT</h1>
+
+
+<div class="anio">
+<h2>1° Año</h2>
+<div class="materia desbloqueada" id="Contenidos_transversales" title="Correlativas: Ninguna" onclick="toggleAprobada('Contenidos_transversales')">Contenidos transversales</div>
+
+<div class="materia desbloqueada" id="Historia_del_pensamiento" title="Correlativas: Ninguna" onclick="toggleAprobada('Historia_del_pensamiento')">Historia del pensamiento</div>
+
+<div class="materia desbloqueada" id="Destrezas_I" title="Correlativas: Ninguna" onclick="toggleAprobada('Destrezas_I')">Destrezas I</div>
+
+<div class="materia desbloqueada" id="Teoría_del_derecho_y_la_justicia" title="Correlativas: Ninguna" onclick="toggleAprobada('Teoría_del_derecho_y_la_justicia')">Teoría del derecho y la justicia</div>
+
+<div class="materia desbloqueada" id="Teoría_del_estado" title="Correlativas: Ninguna" onclick="toggleAprobada('Teoría_del_estado')">Teoría del estado</div>
+
+<div class="materia desbloqueada" id="Nociones_de_economía" title="Correlativas: Ninguna" onclick="toggleAprobada('Nociones_de_economía')">Nociones de economía</div>
+
+</div>
+<div class="anio">
+<h2>2° Año</h2>
+<div class="materia" id="Lógica" title="Correlativas: Contenidos transversales, Historia del pensamiento, Teoría del derecho y la justicia" onclick="toggleAprobada('Lógica')">Lógica</div>
+
+<div class="materia" id="Civil_I" title="Correlativas: Contenidos transversales, Nociones de economía, Destrezas I" onclick="toggleAprobada('Civil_I')">Civil I</div>
+
+<div class="materia" id="Derecho_constitucional" title="Correlativas: Contenidos transversales, Historia del pensamiento, Teoría del derecho y la justicia, Teoría del estado" onclick="toggleAprobada('Derecho_constitucional')">Derecho constitucional</div>
+
+<div class="materia" id="Derecho_penal_I" title="Correlativas: Derecho constitucional" onclick="toggleAprobada('Derecho_penal_I')">Derecho penal I</div>
+
+<div class="materia" id="Obligaciones" title="Correlativas: Civil I" onclick="toggleAprobada('Obligaciones')">Obligaciones</div>
+
+<div class="materia" id="Nociones_de_Sociología" title="Correlativas: Contenidos transversales, Historia del pensamiento, Teoría del estado" onclick="toggleAprobada('Nociones_de_Sociología')">Nociones de Sociología</div>
+
+</div>
+<div class="anio">
+<h2>3° Año</h2>
+<div class="materia" id="Derecho_penal_II" title="Correlativas: Derecho penal I" onclick="toggleAprobada('Derecho_penal_II')">Derecho penal II</div>
+
+<div class="materia" id="Contratos" title="Correlativas: Obligaciones" onclick="toggleAprobada('Contratos')">Contratos</div>
+
+<div class="materia desbloqueada" id="Optativa_I" title="Correlativas: Ninguna" onclick="toggleAprobada('Optativa_I')">Optativa I</div>
+
+<div class="materia" id="Derecho_de_las_empresas" title="Correlativas: Contratos" onclick="toggleAprobada('Derecho_de_las_empresas')">Derecho de las empresas</div>
+
+<div class="materia" id="Derecho_procesal_I" title="Correlativas: Derecho constitucional, Civil I, Derecho penal II" onclick="toggleAprobada('Derecho_procesal_I')">Derecho procesal I</div>
+
+<div class="materia" id="Derechos_humanos" title="Correlativas: Derecho constitucional" onclick="toggleAprobada('Derechos_humanos')">Derechos humanos</div>
+
+<div class="materia" id="Destrezas_II" title="Correlativas: Destrezas I, Lógica, Nociones de Sociología" onclick="toggleAprobada('Destrezas_II')">Destrezas II</div>
+
+</div>
+
+
+<script>
+  const correlatividades = {
+    Lógica: ["Contenidos_transversales", "Historia_del_pensamiento", "Teoría_del_derecho_y_la_justicia"],
+    Civil_I: ["Contenidos_transversales", "Nociones_de_economía", "Destrezas_I"],
+    Derecho_constitucional: ["Contenidos_transversales", "Historia_del_pensamiento", "Teoría_del_derecho_y_la_justicia", "Teoría_del_estado"],
+    Derecho_penal_I: ["Derecho_constitucional"],
+    Obligaciones: ["Civil_I"],
+    Nociones_de_Sociología: ["Contenidos_transversales", "Historia_del_pensamiento", "Teoría_del_estado"],
+    Derecho_penal_II: ["Derecho_penal_I"],
+    Contratos: ["Obligaciones"],
+    Derecho_de_las_empresas: ["Contratos"],
+    Derecho_procesal_I: ["Derecho_constitucional", "Civil_I", "Derecho_penal_II"],
+    Derechos_humanos: ["Derecho_constitucional"],
+    Destrezas_II: ["Destrezas_I", "Lógica", "Nociones_de_Sociología"]
+  };
+
+  let estados = {};
+
+  function guardarEstado() {
+    localStorage.setItem("estadoMaterias", JSON.stringify(estados));
+  }
+
+  function cargarEstado() {
+    const guardado = localStorage.getItem("estadoMaterias");
+    return guardado ? JSON.parse(guardado) : {};
+  }
+
+  function toggleAprobada(nombre) {
+    const materia = document.getElementById(nombre);
+    if (!materia.classList.contains("desbloqueada")) return;
+
+    const yaAprobada = materia.classList.toggle("aprobada");
+    estados[nombre] = yaAprobada;
+    guardarEstado();
+    actualizarDesbloqueos();
+  }
+
+  function actualizarDesbloqueos() {
+    for (let mat in correlatividades) {
+      const elem = document.getElementById(mat);
+      const correlativas = correlatividades[mat];
+      const todasOk = correlativas.every(c => estados[c]);
+      if (!estados[mat]) {
+        if (todasOk) {
+          elem.classList.add("desbloqueada");
+        } else {
+          elem.classList.remove("desbloqueada");
+        }
+      }
+    }
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    estados = cargarEstado();
+
+    for (let mat in estados) {
+      if (estados[mat]) {
+        const elem = document.getElementById(mat);
+        if (elem) elem.classList.add("aprobada");
+      }
+    }
+
+    actualizarDesbloqueos(); // Esta llamada asegura el desbloqueo al iniciar
+  });
+</script>
+
+</body>
+</html>
